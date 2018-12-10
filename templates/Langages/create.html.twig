@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <main class="container">
+        {% block bloch1 %}<h1>Création d'un nouveau langage</h1>{% endblock %}
+
+        {{  form_start(createForm) }}
+        {{  form_widget(createForm) }}
+        <input type="submit" href="{{ path('app_langage_creelangage') }}"
+               value="{% block btnvalue %}Créer le langage{% endblock %}" class="btn btn-outline-success">
+        {{  form_end(createForm) }}
+    </main>
+{% endblock %}
+
+{% block title %}
+    Création d'un nouveau langage
+{% endblock %}
+

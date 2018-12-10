@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ projet.name }} ({{ projet.id }}){% endblock %}
+{% block main %}
+    <main class="container">
+        <h1>{{ projet.name }}</h1>
+        <ul>
+            <li>Développé le : {{ projet.programmedat|date("d/m/Y à H:i:s") }}</li>
+            <li>Publié le : {{ projet.publishedat|date("d/m/Y à H:i:s") }}</li>
+            <li>Publiable? :
+                {%  if  projet.ispublished == 0 %} NON
+                {% else %} OUI
+                {%  endif %}
+            </li>
+            <li>
+                technos :
+                <ul>
+                    {% for langage in projet.langages %}
+                        <li>{{ langage.name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <a>url :<a href="{{ projet.url }}" target="_blank">{{ projet.url }}</a></li>
+        </ul>
+        <img src="{{  asset('images/uploaded/project/'~ projet.image) }}" alt="{{ projet.name }}">
+        <p>{{ projet.description }}</p>
+
+        <a href="/" class="btn btn-outline-primary">Retour à la liste des projets</a>
+
+    </main>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Liste des langages de référence
+{% endblock %}
+
+{% block main %}
+<div class="card col-4" style="width: 18rem;">
+   <table border="1"><caption>langages</caption>
+       <tr><th>#</th><th>Nom</th><th>Front</th><th>slug</th></tr>
+    {% for unlg in lgges %}
+       <tr>
+           <td>{{ unlg.id }}</td>
+           <td>{{ unlg.lgNom }}</td>
+
+           <td>{% if  unlg.isFront == 0 %} BACK-OFFICE
+               {% else %} FRONT-OFFICE
+               {% endif %}
+           </td>
+           <td>{{ unlg.slug }}</td>
+       </tr>
+    {% endfor %}
+   </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <main class="container">
+        {% block bloch1 %}<h1>Création d'un nouveau projet</h1>{% endblock %}
+      {#  {{ form(createForm) }}  pour glisser un bouton, on doit detailler la construction de la forme#}
+        {{  form_start(createForm) }}
+        {{  form_widget(createForm) }}
+        <input type="submit" href="{{ path('app_project_new_proj') }}"
+               value="{% block btnvalue %}Créer le projet{% endblock %}" class="btn btn-outline-success">
+        {{  form_end(createForm) }}
+        {# {{ form(createForm) }}#}
+    </main>
+{% endblock %}
+
+{% block title %}
+    Création d'un nouveau projet
+{% endblock %}
+

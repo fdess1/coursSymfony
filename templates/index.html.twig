@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Liste de mes projets{% endblock %}
+
+{% block main %}
+    <main class="container">
+        <h1>Index provenant de la vue TWIG</h1>
+        {%  for paquet2_3 in projects | batch(3) %}
+          <div class="card-group row">
+            {% for projet in paquet2_3 %}
+                <div class="card col-4" style="width: 18rem;">
+                    <img class="card-img-top" src="{{  asset('images/uploaded/project/'~ projet.image) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ projet.name }}</h5>
+                        <p class="card-text">{{ projet.description | slice(0,100) }}...</p>
+                        <p class="card-text">url: <a href="{{ projet.url }}">{{ projet.url }}</a></p>
+                        <p class="card-text">
+                            {%  if  projet.ispublished == 0 %} NON PUBLIABLE
+                            {% else %} PUBLIABLE
+                            {%  endif %}
+                        </p>
+                        <p class="card-text">slug: <a href="{{ path('app_project_showslug',{slug: projet.slug}) }}">{{ projet.slug }}</a></p>
+                        <a href="{{ path('app_project_projdetail',{noproj: projet.id}) }}" class="btn btn-primary">Voir le projet</a>
+                        <a href="{{ path('app_project_showslugnew',{slug: projet.slug}) }}" class="btn btn-primary">Voir projet.slug</a>
+                        <a href="{{ path('app_project_modif_proj',{id: projet.id}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('app_project_del_proj',{id: projet.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+    </main>
+{% endblock %}
